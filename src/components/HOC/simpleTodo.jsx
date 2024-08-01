@@ -9,7 +9,7 @@ export default function SimpleTodo() {
 
   // Notify user
   const notifyAddTodo = () => toast.error("Add a Todo.");
-  const notifyDeleteTodo = () => toast.error("Deletd Todo.");
+  const notifyDeleteTodo = () => toast.error("Deleted.");
   const notifyAddedTodo = () => toast.success("Todo added.");
   const notifyToggleTodo = (todoText) => {
     if (todoText.includes("done")) {
