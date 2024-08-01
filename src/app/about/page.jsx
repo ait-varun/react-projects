@@ -52,11 +52,9 @@ export default function About() {
   };
 
   const handleEditTask = (editTask) => {
-    // console.log(editTask);
     setisEditing(editTask);
     inputRef.current.focus();
     inputRef.current.value = editTask.task;
-    // console.log(status);
     setTasks((prev) => ({
       ...prev,
       [status]: prev[status].filter((task) => editTask.id !== task.id),
