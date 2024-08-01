@@ -50,7 +50,7 @@ export default function SimpleTodo() {
 
   return (
     <>
-      <Toaster />
+      <Toaster position="bottom-right" toastOptions={{ duration: 2000 }} />
       <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
           Simple Todo
