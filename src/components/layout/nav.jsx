@@ -16,7 +16,7 @@ export default function Nav() {
   };
 
   const getLinkClass = (href) => {
-    const isActive = pathname.includes(href);
+    const isActive = pathname === href;
     return `${isActive ? "text-black" : ""} hover:text-white`;
   };
 
