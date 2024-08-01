@@ -8,7 +8,7 @@ export default function SimpleTodo() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedTodos = localStorage.getItem("todos");
+      const storedTodos = localStorage.getItem("todos1");
       if (storedTodos) {
         setTodos(JSON.parse(storedTodos));
       }
@@ -16,7 +16,7 @@ export default function SimpleTodo() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("todos1", JSON.stringify(todos));
   }, [todos]);
 
   const addTodo = () => {
