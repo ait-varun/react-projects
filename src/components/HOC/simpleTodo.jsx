@@ -11,6 +11,17 @@ export default function SimpleTodo() {
   const notifyAddTodo = () => toast.error("Add a Todo.");
   const notifyDeleteTodo = () => toast.error("Deletd Todo.");
   const notifyAddedTodo = () => toast.success("Todo added.");
+  const notifyToggleTodo = (todoText) => {
+    if (todoText.includes("done")) {
+      toast("Good Job!", {
+        icon: "👏",
+      });
+    } else {
+      toast("Pending!", {
+        icon: "🚧",
+      });
+    }
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -39,11 +50,18 @@ export default function SimpleTodo() {
   };
 
   const toggleTodo = (id) => {
+    let todoInfo = { text: "", status: "" };
     setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todoInfo.text = todo.text;
+          todoInfo.status = !todo.completed ? "done" : "pending";
+          return { ...todo, completed: !todo.completed };
+        }
+        return todo;
+      })
     );
+    notifyToggleTodo(`${todoInfo.text} - ${todoInfo.status}`);
   };
 
   const deleteTodo = (id) => {
