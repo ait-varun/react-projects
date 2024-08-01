@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 
 export default function Nav() {
@@ -15,6 +15,11 @@ export default function Nav() {
     setIsOpen(false);
   };
 
+  const getLinkClass = (href) => {
+    const isActive = pathname === href;
+    return `${isActive ? "text-black" : ""} hover:text-teal-200`;
+  };
+
   return (
     <nav className="bg-teal-500 p-6">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
@@ -23,17 +28,17 @@ export default function Nav() {
         {/* Desktop Menu */}
         <ul className="hidden md:flex justify-center items-center gap-4">
           <li>
-            <Link href="/" className="text-white hover:text-teal-200">
+            <Link href="/" className={getLinkClass("/")}>
               Home
             </Link>
           </li>
           <li>
-            <Link href="/about" className="text-white hover:text-teal-200">
+            <Link href="/about" className={getLinkClass("/about")}>
               About
             </Link>
           </li>
           <li>
-            <Link href="/contact" className="text-white hover:text-teal-200">
+            <Link href="/contact" className={getLinkClass("/contact")}>
               Contact
             </Link>
           </li>
@@ -75,7 +80,7 @@ export default function Nav() {
           <li>
             <Link
               href="/"
-              className="block py-2 text-white hover:bg-teal-600"
+              className={`block py-2 ${getLinkClass("/")} hover:bg-teal-600`}
               onClick={closeMenu}>
               Home
             </Link>
@@ -83,7 +88,9 @@ export default function Nav() {
           <li>
             <Link
               href="/about"
-              className="block py-2 text-white hover:bg-teal-600"
+              className={`block py-2 ${getLinkClass(
+                "/about"
+              )} hover:bg-teal-600`}
               onClick={closeMenu}>
               About
             </Link>
@@ -91,7 +98,9 @@ export default function Nav() {
           <li>
             <Link
               href="/contact"
-              className="block py-2 text-white hover:bg-teal-600"
+              className={`block py-2 ${getLinkClass(
+                "/contact"
+              )} hover:bg-teal-600`}
               onClick={closeMenu}>
               Contact
             </Link>
