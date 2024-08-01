@@ -27,7 +27,10 @@ export default function SimpleTodo() {
 
   const addTodo = () => {
     if (newTodo.trim() !== "") {
-      setTodos([...todos, { text: newTodo, completed: false }]);
+      setTodos([
+        ...todos,
+        { id: self.crypto.randomUUID(), text: newTodo, completed: false },
+      ]);
       setNewTodo("");
       notifyAddedTodo();
     } else {
@@ -35,16 +38,16 @@ export default function SimpleTodo() {
     }
   };
 
-  const toggleTodo = (index) => {
+  const toggleTodo = (id) => {
     setTodos(
-      todos.map((todo, i) =>
-        i === index ? { ...todo, completed: !todo.completed } : todo
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
     );
   };
 
-  const deleteTodo = (index) => {
-    setTodos(todos.filter((_, i) => i !== index));
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
     notifyDeleteTodo();
   };
 
