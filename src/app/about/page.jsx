@@ -13,12 +13,7 @@ export default function About() {
   });
   const [status, setStatus] = useState("Todo");
 
-  const taskOptions = useMemo(() => {
-    return Object.keys(tasks).map((key) => ({
-      value: key,
-      label: key,
-    }));
-  }, [tasks]);
+
 
   const handleAddTask = (e) => {
     e.preventDefault();
@@ -99,9 +94,9 @@ export default function About() {
             id="task"
             defaultValue={status}
             onChange={handleCategoryChange}>
-            {taskOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
+            {Object.keys(tasks).map((key) => (
+              <option key={key} value={key}>
+                {key}
               </option>
             ))}
           </select>
