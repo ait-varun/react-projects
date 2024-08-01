@@ -20,6 +20,11 @@ export default function Nav() {
     return `${isActive ? "text-black" : ""} hover:text-white`;
   };
 
+  const links = [
+    { href: "/", text: "Home" },
+    { href: "/about", text: "About" },
+  ];
+
   return (
     <nav className="bg-teal-500 p-6">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
@@ -27,21 +32,13 @@ export default function Nav() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex justify-center items-center gap-4">
-          <li>
-            <Link href="/" className={getLinkClass("/")}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className={getLinkClass("/about")}>
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className={getLinkClass("/contact")}>
-              Contact
-            </Link>
-          </li>
+          {links.map((link) => (
+            <li key={link.href}>
+              <Link href={link.href} className={getLinkClass(link.href)}>
+                {link.text}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         {/* Hamburger Menu Icon */}
@@ -77,36 +74,18 @@ export default function Nav() {
           isOpen ? "max-h-56 opacity-100" : "max-h-0 opacity-0"
         }`}>
         <ul className="pt-4 pb-3">
-          <li>
-            <Link
-              href="/"
-              className={`block py-2 ${getLinkClass(
-                "/"
-              )} text-center hover:font-bold`}
-              onClick={closeMenu}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/about"
-              className={`block py-2 ${getLinkClass(
-                "/about"
-              )} text-center hover:font-bold`}
-              onClick={closeMenu}>
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/contact"
-              className={`block py-2 ${getLinkClass(
-                "/contact"
-              )} text-center hover:font-bold`}
-              onClick={closeMenu}>
-              Contact
-            </Link>
-          </li>
+          {links.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className={`block py-2 ${getLinkClass(
+                  link.href
+                )} text-center hover:font-bold`}
+                onClick={closeMenu}>
+                {link.text}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>
