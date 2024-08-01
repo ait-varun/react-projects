@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -11,6 +13,15 @@ export default function Nav() {
 
   const closeMenu = () => {
     setIsOpen(false);
+  };
+
+  const getLinkClassName = (href) => {
+    const baseClass =
+      "block mt-4 md:inline-block md:mt-0 text-white hover:text-white mr-4";
+    if (pathname === href) {
+      return `${baseClass} active`;
+    }
+    return baseClass;
   };
 
   return (
@@ -34,68 +45,29 @@ export default function Nav() {
           </button>
         </div>
       </div>
-      <div
-        className={`${
-          isOpen ? "fixed inset-0 bg-teal-500 z-50 pt-20" : "hidden"
-        } md:relative md:flex md:items-center  md:w-auto w-full mt-4 md:mt-0`}>
-        {isOpen && (
-          <button
+      <div className="md:flex-grow md:flex md:justify-between text-center">
+        <span className="text-white font-bold mr-4 hidden md:inline-block">
+          Logo
+        </span>
+        <div className="flex gap-4">
+          <Link href="/" onClick={closeMenu} className={getLinkClassName("/")}>
+            Home
+          </Link>
+          <Link
+            href="/about"
             onClick={closeMenu}
-            className="absolute top-6 right-6 text-white md:hidden">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
-        )}
-        <div className="md:flex-grow md:flex md:justify-between text-center">
-          <span className="text-white font-bold mr-4 hidden md:inline-block">
-            Logo
-          </span>
-          <div className="flex gap-4">
-            {" "}
-            <Link
-              href={"/"}
-              onClick={closeMenu}
-              className={({ isActive, isPending }) =>
-                `block mt-4 md:inline-block md:mt-0 text-white hover:text-white mr-4 ${
-                  isPending ? "pending" : isActive ? "active" : ""
-                }`
-              }>
-              Home
-            </Link>
-            <Link
-              href={"/about"}
-              onClick={closeMenu}
-              className={({ isActive, isPending }) =>
-                `block mt-4 md:inline-block md:mt-0 text-white hover:text-white mr-4 ${
-                  isPending ? "pending" : isActive ? "active" : ""
-                }`
-              }>
-              About
-            </Link>
-            <Link
-              href={"/contact"}
-              onClick={closeMenu}
-              className={({ isActive, isPending }) =>
-                `block mt-4 md:inline-block md:mt-0 text-white hover:text-white ${
-                  isPending ? "pending" : isActive ? "active" : ""
-                }`
-              }>
-              Contact
-            </Link>
-          </div>
-          <div className="mt-4 md:mt-0">
-            <span>Icon</span>
-          </div>
+            className={getLinkClassName("/about")}>
+            About
+          </Link>
+          <Link
+            href="/contact"
+            onClick={closeMenu}
+            className={getLinkClassName("/contact")}>
+            Contact
+          </Link>
+        </div>
+        <div className="mt-4 md:mt-0">
+          <span>Icon</span>
         </div>
       </div>
     </nav>
