@@ -34,12 +34,12 @@ export default function SimpleTodo() {
 
   // Set localStorage on mount and on todos change
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("simpleTodos", JSON.stringify(todos));
   }, [todos]);
 
   // Get todos from localStorage on mount
   useEffect(() => {
-    const storedTodos = localStorage.getItem("todos");
+    const storedTodos = localStorage.getItem("simpleTodos");
     if (storedTodos) {
       setTodos(JSON.parse(storedTodos));
     }
