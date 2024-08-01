@@ -31,11 +31,3 @@ nav a:hover::after,
 .active::after {
   transform: scaleX(1);
 }
-
-nav a.pending {
-  color: rgb(146, 146, 146);
-}
-
-nav a.active {
-  color: rgb(0, 0, 0);
-}

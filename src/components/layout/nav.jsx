@@ -17,7 +17,7 @@ export default function Nav() {
 
   const getLinkClass = (href) => {
     const isActive = pathname === href;
-    return `${isActive ? "text-black" : ""} hover:text-teal-200`;
+    return `${isActive ? "text-black" : ""} hover:text-white`;
   };
 
   return (
@@ -80,7 +80,7 @@ export default function Nav() {
           <li>
             <Link
               href="/"
-              className={`block py-2 ${getLinkClass("/")} hover:bg-teal-600`}
+              className={`block py-2 ${getLinkClass("/")} hover:bg-white`}
               onClick={closeMenu}>
               Home
             </Link>
@@ -88,9 +88,7 @@ export default function Nav() {
           <li>
             <Link
               href="/about"
-              className={`block py-2 ${getLinkClass(
-                "/about"
-              )} hover:bg-teal-600`}
+              className={`block py-2 ${getLinkClass("/about")} hover:bg-white`}
               onClick={closeMenu}>
               About
             </Link>
@@ -100,7 +98,7 @@ export default function Nav() {
               href="/contact"
               className={`block py-2 ${getLinkClass(
                 "/contact"
-              )} hover:bg-teal-600`}
+              )} hover:bg-white`}
               onClick={closeMenu}>
               Contact
             </Link>
