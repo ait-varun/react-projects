@@ -11,10 +11,10 @@ export default function SimpleTodoList({ todos, toggleTodo, deleteTodo }) {
             type="checkbox"
             checked={todo.completed}
             onChange={() => toggleTodo(todo.id)}
-            className="mr-2 form-checkbox h-5 w-5 text-blue-500"
+            className="mr-2 form-checkbox min-h-5 min-w-5 text-blue-500"
           />
           <span
-            className={`flex-grow ${
+            className={`flex-grow w-fit truncate ${
               todo.completed ? "line-through text-gray-500" : "text-gray-800"
             }`}>
             {todo.text}
