@@ -1,6 +1,6 @@
 "use client";
 import { useState, useMemo, useRef, useEffect } from "react";
-import TodoList from "@/components/common/todolist";
+import TodoList from "../../components/common/todolist";
 
 export default function About() {
   const inputRef = useRef(null);

@@ -1,4 +1,4 @@
-import SimpleTodo from "@/components/HOC/simpleTodo";
+import SimpleTodo from "../components/HOC/simpleTodo";
 
 export default function Home() {
   return (

@@ -1,6 +1,6 @@
 "use client";
-import SimpleTodoList from "@/components/common/simpleTodoList";
-import { useState, useRef } from "react";
+import SimpleTodoList from "../common/simpleTodoList";
+import { useState, useRef, useEffect } from "react";
 
 export default function SimpleTodo() {
   const inputRef = useRef(null);
@@ -31,6 +31,20 @@ export default function SimpleTodo() {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
   };
+
+  // Set localStorage on mount and on todos change
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  // Get todos from localStorage on mount
+  useEffect(() => {
+    const storedTodos = localStorage.getItem("todos");
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
+
   return (
     <>
       <div className="flex flex-col justify-center items-center gap-4 my-auto h-60 ">
