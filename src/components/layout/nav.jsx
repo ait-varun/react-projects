@@ -60,7 +60,7 @@ export default function Nav() {
           <span className="text-white font-bold mr-4 hidden md:inline-block">
             Logo
           </span>
-          <div>
+          <div className="flex gap-4">
             {" "}
             <Link
               href={"/"}
