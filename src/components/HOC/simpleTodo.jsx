@@ -33,7 +33,8 @@ export default function SimpleTodo() {
   };
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col justify-center items-center gap-4 my-auto h-60 ">
+        <h1 className="text-2xl font-bold">Simple Todo</h1>
         <div className="flex gap-4">
           <input
             ref={inputRef}

@@ -4,7 +4,10 @@ export default function SimpleTodoList({ todos, toggleTodo, deleteTodo }) {
       <div>
         {todos.map((todo) => (
           <div className="flex gap-4 items-center" key={todo.id}>
-            <span className={todo.completed ? "line-through" : ""}>
+            <span
+              className={`${
+                todo.completed ? "line-through" : ""
+              } max-w-20 w-20 truncate`}>
               {todo.text}
             </span>
             <button
