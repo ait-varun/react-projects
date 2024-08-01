@@ -15,60 +15,88 @@ export default function Nav() {
     setIsOpen(false);
   };
 
-  const getLinkClassName = (href) => {
-    const baseClass =
-      "block mt-4 md:inline-block md:mt-0 text-white hover:text-white mr-4";
-    if (pathname === href) {
-      return `${baseClass} active`;
-    }
-    return baseClass;
-  };
-
   return (
     <nav className="bg-teal-500 p-6">
-      <div className="flex justify-between items-center">
-        <div className="text-white font-bold md:hidden"> Logo</div>
-        <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-white">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-        </div>
+      <div className="max-w-6xl mx-auto flex justify-between items-center">
+        <h1 className="text-white text-xl font-bold">Logo</h1>
+
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex justify-center items-center gap-4">
+          <li>
+            <Link href="/" className="text-white hover:text-teal-200">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className="text-white hover:text-teal-200">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact" className="text-white hover:text-teal-200">
+              Contact
+            </Link>
+          </li>
+        </ul>
+
+        {/* Hamburger Menu Icon */}
+        <button
+          className="text-white w-10 h-10 relative focus:outline-none bg-transparent md:hidden"
+          onClick={toggleMenu}>
+          <span className="sr-only">Open main menu</span>
+          <div className="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <span
+              aria-hidden="true"
+              className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${
+                isOpen ? "rotate-45" : "-translate-y-1.5"
+              }`}></span>
+            <span
+              aria-hidden="true"
+              className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${
+                isOpen ? "opacity-0" : ""
+              }`}></span>
+            <span
+              aria-hidden="true"
+              className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${
+                isOpen ? "-rotate-45" : "translate-y-1.5"
+              }`}></span>
+          </div>
+        </button>
+
+        <span className="hidden md:inline text-white">Icon</span>
       </div>
-      <div className="md:flex-grow md:flex md:justify-between text-center">
-        <span className="text-white font-bold mr-4 hidden md:inline-block">
-          Logo
-        </span>
-        <div className="flex gap-4">
-          <Link href="/" onClick={closeMenu} className={getLinkClassName("/")}>
-            Home
-          </Link>
-          <Link
-            href="/about"
-            onClick={closeMenu}
-            className={getLinkClassName("/about")}>
-            About
-          </Link>
-          <Link
-            href="/contact"
-            onClick={closeMenu}
-            className={getLinkClassName("/contact")}>
-            Contact
-          </Link>
-        </div>
-        <div className="mt-4 md:mt-0">
-          <span>Icon</span>
-        </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? "max-h-56 opacity-100" : "max-h-0 opacity-0"
+        }`}>
+        <ul className="pt-4 pb-3">
+          <li>
+            <Link
+              href="/"
+              className="block py-2 text-white hover:bg-teal-600"
+              onClick={closeMenu}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/about"
+              className="block py-2 text-white hover:bg-teal-600"
+              onClick={closeMenu}>
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/contact"
+              className="block py-2 text-white hover:bg-teal-600"
+              onClick={closeMenu}>
+              Contact
+            </Link>
+          </li>
+        </ul>
       </div>
     </nav>
   );
