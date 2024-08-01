@@ -62,9 +62,11 @@ export default function About() {
 
   // Load TODOs from local storage on app startup
   useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem("todos"));
-    if (storedTodos) {
-      setTasks(storedTodos);
+    if (typeof window !== "undefined") {
+      const storedTodos = JSON.parse(localStorage.getItem("todos"));
+      if (storedTodos) {
+        setTasks(storedTodos);
+      }
     }
   }, []);
 

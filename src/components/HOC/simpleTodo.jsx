@@ -7,9 +7,11 @@ export default function SimpleTodo() {
   const [newTodo, setNewTodo] = useState("");
 
   useEffect(() => {
-    const storedTodos = localStorage.getItem("todos");
-    if (storedTodos) {
-      setTodos(JSON.parse(storedTodos));
+    if (typeof window !== "undefined") {
+      const storedTodos = localStorage.getItem("todos");
+      if (storedTodos) {
+        setTodos(JSON.parse(storedTodos));
+      }
     }
   }, []);
 
