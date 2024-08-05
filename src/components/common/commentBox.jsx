@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, use } from "react";
 
 export default function CommentBox() {
   const inputRef = useRef(null);
@@ -42,6 +42,19 @@ export default function CommentBox() {
   const handleDeleteComment = (id) => {
     setComments(comments.filter((comment) => comment.id !== id));
   };
+
+  useEffect(() => {
+    localStorage.setItem("comments", JSON.stringify(comments));
+  }, [comments]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const comments = localStorage.getItem("comments");
+      if (comments) {
+        setComments(JSON.parse(comments));
+      }
+    }
+  }, []);
 
   return (
     <>
