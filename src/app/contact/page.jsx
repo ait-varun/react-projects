@@ -1,7 +1,9 @@
+import Search from "../../components/common/searchBox";
+
 export default function Contact() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold">Contact</h1>
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
+      <Search />
     </div>
   );
 }
