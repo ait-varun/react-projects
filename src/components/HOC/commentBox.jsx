@@ -61,6 +61,7 @@ export default function CommentBox() {
     <>
       <div className="flex flex-row gap-2">
         <textarea
+          className="focus:outline-none focus:ring-2 focus:ring-blue-600"
           name="comment"
           id="comment"
           cols="30"
