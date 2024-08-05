@@ -8,6 +8,20 @@ export default function CommentBox() {
   const [comments, setComments] = useState([]);
   const [editingId, setEditingId] = useState(null);
 
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedComments = localStorage.getItem("commentsData");
+      if (storedComments) {
+        setComments(JSON.parse(storedComments));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("commentsData", JSON.stringify(comments));
+  }, [comments]);
+
   const handleAddComment = () => {
     const text = inputRef.current.value.trim();
     if (text) {
@@ -43,19 +57,6 @@ export default function CommentBox() {
   const handleDeleteComment = (id) => {
     setComments(comments.filter((comment) => comment.id !== id));
   };
-
-  useEffect(() => {
-    localStorage.setItem("comments", JSON.stringify(comments));
-  }, [comments]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const comments = localStorage.getItem("comments");
-      if (comments) {
-        setComments(JSON.parse(comments));
-      }
-    }
-  }, []);
 
   return (
     <>
