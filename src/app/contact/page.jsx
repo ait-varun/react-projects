@@ -1,5 +1,5 @@
 import Search from "../../components/common/searchBox";
-import CommentBox from "../../components/common/commentBox";
+import CommentBox from "../../components/HOC/commentBox";
 
 export default function Contact() {
   return (
