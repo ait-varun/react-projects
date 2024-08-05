@@ -21,8 +21,9 @@ export default function Nav() {
   };
 
   const links = [
-    { href: "/", text: "Home" },
-    { href: "/about", text: "About" },
+    { href: "/", text: "Simple Todo" },
+    { href: "/about", text: "Todos" },
+    { href: "/contact", text: "Test" },
   ];
 
   return (

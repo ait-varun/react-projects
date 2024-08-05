@@ -5,6 +5,7 @@ export async function GET() {
   const DATA = [
     { id: 1, title: "DATA 1" },
     { id: 2, title: "DATA 2" },
+    { id: 3, title: "DATA 3" },
   ];
   return NextResponse.json(DATA);
 }
