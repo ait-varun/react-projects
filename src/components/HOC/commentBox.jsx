@@ -7,7 +7,7 @@ export default function CommentBox() {
   const inputRef = useRef(null);
   const [comments, setComments] = useState([]);
   const [editingId, setEditingId] = useState(null);
-
+  const [inputText, setInputText] = useState("");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -22,8 +22,12 @@ export default function CommentBox() {
     localStorage.setItem("commentsData", JSON.stringify(comments));
   }, [comments]);
 
+  const handleInputChange = (e) => {
+    setInputText(e.target.value);
+  };
+
   const handleAddComment = () => {
-    const text = inputRef.current.value.trim();
+    const text = inputText.trim();
     if (text) {
       if (editingId !== null) {
         setComments(
@@ -41,6 +45,7 @@ export default function CommentBox() {
           },
         ]);
       }
+      setInputText("");
       inputRef.current.value = "";
     }
   };
@@ -48,6 +53,7 @@ export default function CommentBox() {
   const handleEditComment = (id) => {
     const commentToEdit = comments.find((comment) => comment.id === id);
     if (commentToEdit) {
+      setInputText(commentToEdit.comment);
       inputRef.current.value = commentToEdit.comment;
       inputRef.current.focus();
       setEditingId(id);
@@ -68,10 +74,17 @@ export default function CommentBox() {
           cols="30"
           rows="1"
           placeholder="Enter your comment here..."
-          ref={inputRef}></textarea>
+          ref={inputRef}
+          value={inputText}
+          onChange={handleInputChange}></textarea>
         <button
-          className="bg-blue-600 text-white px-4 py-2"
-          onClick={handleAddComment}>
+          className={`text-white px-4 py-2 ${
+            inputText.trim()
+              ? "bg-blue-600 hover:bg-blue-700"
+              : "bg-gray-400 cursor-not-allowed"
+          }`}
+          onClick={handleAddComment}
+          disabled={!inputText.trim()}>
           {editingId !== null ? "Update Comment" : "Add Comment"}
         </button>
       </div>
