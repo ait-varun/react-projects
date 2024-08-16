@@ -58,7 +58,7 @@ function Column({ name, items, onDragStart, onDragOver, onDrop }) {
     <div className="flex flex-col gap-4">
       <h2 className="text-xl font-bold">{name}</h2>
       <div
-        className="flex flex-wrap gap-4"
+        className="flex flex-wrap gap-4 min-h-[100px] p-2 border border-dashed border-gray-300"
         onDrop={(e) => onDrop(e, name)}
         onDragOver={onDragOver}>
         {items.map((item) => (
@@ -77,7 +77,7 @@ function Column({ name, items, onDragStart, onDragOver, onDrop }) {
 function Item({ item, columnName, onDragStart }) {
   return (
     <div
-      className="bg-gray-200 rounded-lg p-4 w-full"
+      className="bg-gray-200 rounded-lg p-4 w-full cursor-move"
       draggable="true"
       onDragStart={(e) => onDragStart(e, item, columnName)}>
       {item}
