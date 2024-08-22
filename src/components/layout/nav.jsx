@@ -24,6 +24,7 @@ export default function Nav() {
     { href: "/", text: "Simple Todo" },
     { href: "/about", text: "Todos" },
     { href: "/contact", text: "Test" },
+    { href: "/animation", text: "Animation" },
   ];
 
   return (
