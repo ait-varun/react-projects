@@ -69,52 +69,53 @@ export default function SimpleTodo() {
     notifyDeleteTodo();
   };
 
-  return (
-    <>
-      <Toaster
-        position="bottom-right"
-        toastOptions={{ duration: 2000 }}
-        reverseOrder={true}
-      />
-      <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
-          Simple Todo
-        </h1>
 
-        <div className="mb-4 flex">
-          <input
-            type="text"
-            value={newTodo}
-            onChange={(e) => setNewTodo(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                addTodo();
-              }
-            }}
-            className="flex-grow px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-inset"
-            placeholder="Add a new todo..."
-          />
-          <button
-            onClick={addTodo}
-            className="px-4 py-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            Add
-          </button>
+    return (
+      <>
+        <Toaster
+          position="bottom-right"
+          toastOptions={{ duration: 2000 }}
+          reverseOrder={true}
+        />
+        <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+          <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
+            Simple Todo
+          </h1>
+
+          <div className="mb-4 flex">
+            <input
+              type="text"
+              value={newTodo}
+              onChange={(e) => setNewTodo(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  addTodo();
+                }
+              }}
+              className="flex-grow px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-inset"
+              placeholder="Add a new todo..."
+            />
+            <button
+              onClick={addTodo}
+              className="px-4 py-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              Add
+            </button>
+          </div>
+
+          <ul className="space-y-2">
+            <SimpleTodoList
+              todos={todos}
+              toggleTodo={toggleTodo}
+              deleteTodo={deleteTodo}
+            />
+          </ul>
+
+          {todos.length === 0 && (
+            <p className="text-center text-gray-500 mt-4">
+              No todos yet. Add one above!
+            </p>
+          )}
         </div>
-
-        <ul className="space-y-2">
-          <SimpleTodoList
-            todos={todos}
-            toggleTodo={toggleTodo}
-            deleteTodo={deleteTodo}
-          />
-        </ul>
-
-        {todos.length === 0 && (
-          <p className="text-center text-gray-500 mt-4">
-            No todos yet. Add one above!
-          </p>
-        )}
-      </div>
-    </>
-  );
+      </>
+    );
 }
